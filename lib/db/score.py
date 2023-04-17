@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import (declarative_base)
 
 Base = declarative_base()
 
-class Score():
+class Score(Base):
     __tablename__ = 'scores'
 
     id = Column('id', Integer, primary_key = True)
@@ -17,4 +17,4 @@ class Score():
     def __repr__(self):
         return f'Id: {self.id}, ' \
             f'Score {self.score}, ' \
-            
+            f'User {self.user}'
