@@ -2,8 +2,8 @@ import random
 from db.models import Word
 
 def level1_words():
-    word = 
-    random_word = random.choice(word)
+    word_list = 
+    random_word = random.choice(word_list)
     return random_word.upper()
 
 def play_game(word):
