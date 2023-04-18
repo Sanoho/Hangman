@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from db.models import (Base, Word)
+from db.words import level_four_words, level_five_words
 
 if __name__ == '__main__':
     engine = create_engine('sqlite:///hangman_app.db')
@@ -10,5 +11,16 @@ if __name__ == '__main__':
 
     # pas = Word(word = 'pass', difficulty = 1)
 
-    session.add()
-    session.commit()
+    # for word in level_three_words:
+    #     word = Word(word = word, difficulty = 3)
+    #     session.add(word)
+    #     session.commit()
+    for word in level_four_words:
+        word = Word(word = word, difficulty = 4)
+        session.add(word)
+        session.commit()
+    for word in level_five_words:
+        word = Word(word = word, difficulty = 5)
+        session.add(word)
+        session.commit()
+        
