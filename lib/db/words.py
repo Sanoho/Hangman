@@ -86,5 +86,19 @@ level_five_words = [
     'prodigy',
     'children',
     'foreign',
-    'challenge'
+    'challenge',
+    'differences',
+    'awkward',
+    'abruptly',
+    'absurd',
+    'axiom',
+    'triphthong',
+    'unknown',
+    'iatrogenic',
+    'voyeurism',
+    'jiujitsu',
+    'zealot',
+    'yachtsman',
+    'xyolphone'
+    'err'
 ]
