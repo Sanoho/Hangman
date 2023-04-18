@@ -3,11 +3,18 @@
 # from db.words import Words
 import os, time, sys
 
+ask_name = "Please enter your username:\n"
+def prompt_username(ask_name):
+    for char in ask_name:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(0.1)
+
 class Hangman():
     os.system('clear')
     hangman = ["hangman11.txt", "hangman22.txt"]
 
-    def animator(filenames, delay = 1, repeat = 10):
+    def animator(filenames, delay = 1, repeat = 4):
         frames = []
         for name in filenames:
             with open (name, 'r', encoding = 'utf8') as f:
@@ -17,7 +24,8 @@ class Hangman():
                 print(''.join(frame))
                 time.sleep(delay)
                 os.system('clear')
-    animator(hangman, delay = 1.0, repeat = 4)
+
+    animator(hangman, delay = 1.0, repeat = 3)
 
     message = """Welcome to Hangman!
 Hangman is a classic word game in which you must guess as many secret words as you can before you run out of lives!\n"""
@@ -28,27 +36,25 @@ Hangman is a classic word game in which you must guess as many secret words as y
             time.sleep(0.1)
     title_typewriter(message)
 
-    ask_name = "Please enter your username:\n"
-    def prompt_username(ask_name):
-        for char in ask_name:
-            sys.stdout.write(char)
-            sys.stdout.flush()
-            time.sleep(0.1)
     prompt_username(ask_name)
 
     username = input()
     def input_username(username):
-        welcome_message = f"Welcome, {username}!\nAre you ready to start?\n(yes/no)"
+        welcome_message = f"Welcome, {username}!\nAre you ready to start?\n(y/n)\n"
         for char in welcome_message:
             sys.stdout.write(char)
             sys.stdout.flush()
             time.sleep(0.1)
-        if welcome_message == "yes":
-            print("plays the game")
-        else:
-            return prompt_username(ask_name)
 
-    input_username(username)
+    input_username(username) 
+    decision = input()
+    def yes_or_no(decision):
+        if decision == "y":
+            print("Let's start the game!")
+        else:
+            prompt_username(ask_name)
+    yes_or_no(decision)
+
 
 
 # GET WORD FUNC
