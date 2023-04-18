@@ -1,9 +1,10 @@
 import random
-from db.words import level_one_words
+from db.models import Word
 
 def level1_words():
-    word = random.choice(level_one_words)
-    return word.upper()
+    word = 
+    random_word = random.choice(word)
+    return random_word.upper()
 
 def play_game(word):
     word_completion = "_" * len(word)
