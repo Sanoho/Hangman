@@ -1,9 +1,19 @@
 import random
-from db.words import level_five_words
+from db.models import Word, Base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+import level1
 
 def level5_words():
-    word = random.choice(level_five_words)
-    return word.upper()
+    engine = create_engine('sqlite:///hangman_app.db')
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind = engine)
+    session = Session()
+    word_list = []
+    for word in session.query(Word).where(Word.difficulty == 5):
+        word_list.append(word.word)
+    random_word = random.choice(word_list)
+    return random_word.upper()
 
 def play_game(word):
     word_completion = "_" * len(word)
@@ -131,9 +141,8 @@ def display_hangman(tries):
 def main():
     word = level5_words()
     play_game(word)
-    while input("Play Again? (Y/N) ").upper() == "Y":
-        word = level5_words()
-        play_game(word)
+    while input("CONGRATS YOU WON THE GAME!! Play Again? (Y/N) ").upper() == "Y":
+        level1.main()
 
 
 if __name__ == "__main__":

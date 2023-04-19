@@ -1,9 +1,19 @@
 import random
-from db.words import level_two_words
+from db.models import Word, Base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+import level3
 
 def level2_words():
-    word = random.choice(level_two_words)
-    return word.upper()
+    engine = create_engine('sqlite:///hangman_app.db')
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind = engine)
+    session = Session()
+    word_list = []
+    for word in session.query(Word).where(Word.difficulty == 2):
+        word_list.append(word.word)
+    random_word = random.choice(word_list)
+    return random_word.upper()
 
 def play_game(word):
     word_completion = "_" * len(word)
@@ -131,9 +141,8 @@ def display_hangman(tries):
 def main():
     word = level2_words()
     play_game(word)
-    while input("Play Again? (Y/N) ").upper() == "Y":
-        word = level2_words()
-        play_game(word)
+    while input("Are you ready for the next level? ").upper() == "Y":
+        level3.main()
 
 
 if __name__ == "__main__":
