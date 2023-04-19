@@ -9,7 +9,6 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind = engine)
 session = Session()
 leaderboard = session.query(Leaderboard).first()
-print(leaderboard)
 
 def level2_words():
     word_list = []
@@ -67,6 +66,8 @@ def play_game(word, user):
         print("Congrats, you guessed the word! You win!")
         total_score = tries * score
         level1.highscore.append(total_score)
+        points = sum([score for score in level1.highscore])     
+        print(points)   
         if input("Are you ready for the next level? ").upper() == "Y":
             level3.main(user, leaderboard)
     else:

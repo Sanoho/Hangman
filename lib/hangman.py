@@ -43,9 +43,6 @@ def prompt_username(ask_name):
 prompt_username(ask_name)
 
 username = input()
-# user = User(username = username)
-# session.add(user)
-# session.commit()
 
 def find_or_create_user(username):
     user = session.query(User).filter(User.username == username).first()

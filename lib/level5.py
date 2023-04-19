@@ -61,10 +61,11 @@ def play_game(word, user, leaderboard):
         print(word_completion)
         print("\n")
     if guessed:
-        print("Congrats, you guessed the word! You win!")
         total_score = tries * score
         level1.highscore.append(total_score)
         print(sum([score for score in level1.highscore]))
+        points = sum([score for score in level1.highscore])     
+        print(f"Congrats, you won the game with the score of {points}!!")
         if input("CONGRATS YOU WON THE GAME!! Play Again? (Y/N) ").upper() == "Y":
             level1.main()
     else:
