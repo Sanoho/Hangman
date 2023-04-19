@@ -82,6 +82,6 @@ while decision != "y":
     decision = input()
     yes_or_no(decision)
 
-level1.main()
+level1.main(user)
 
 

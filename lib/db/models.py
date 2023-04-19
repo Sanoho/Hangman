@@ -42,6 +42,4 @@ class Leaderboard(Base):
     id = Column('id', Integer, primary_key = True)
     scores = relationship('Score', backref = 'leaderboard')
     def __repr__(self):
-        return f'Id: {self.id}, ' \
-            f'Username {self.username}, ' \
-            f'Score {self.score},' 
+        return f'Id: {self.id}, ' 

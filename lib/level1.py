@@ -16,7 +16,7 @@ def level1_words():
     random_word = random.choice(word_list)
     return random_word.upper()
 
-def play_game(word):
+def play_game(word, user):
     word_completion = "_" * len(word)
     guessed = False
     guessed_letters = []
@@ -66,7 +66,7 @@ def play_game(word):
         total_score = tries * score
         highscore.append(total_score)
         if input("Are you ready for the next level? ").upper() == "Y":
-            level2.main()
+            level2.main(user)
     else:
         print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
         if input("Do you want to play again?").upper() == "Y":
@@ -146,9 +146,6 @@ def display_hangman(tries):
     ]
     return stages[tries]
 
-def main():
+def main(user):
     word = level1_words()
-    play_game(word)
-
-if __name__ == "__main__":
-    main()
+    play_game(word, user)

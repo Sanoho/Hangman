@@ -1,21 +1,21 @@
 import random
-from db.models import Word, Base
+from db.models import Word, Base, Score
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import level1
 
+engine = create_engine('sqlite:///hangman_app.db')
+Base.metadata.create_all(engine)
+Session = sessionmaker(bind = engine)
+session = Session()
 def level5_words():
-    engine = create_engine('sqlite:///hangman_app.db')
-    Base.metadata.create_all(engine)
-    Session = sessionmaker(bind = engine)
-    session = Session()
     word_list = []
     for word in session.query(Word).where(Word.difficulty == 5):
         word_list.append(word.word)
     random_word = random.choice(word_list)
     return random_word.upper()
 
-def play_game(word):
+def play_game(word, user, leaderboard):
     word_completion = "_" * len(word)
     guessed = False
     guessed_letters = []
@@ -69,7 +69,15 @@ def play_game(word):
             level1.main()
     else:
         print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
-        print(sum([score for score in level1.highscore]))
+        points = sum([score for score in level1.highscore])
+        print(points)
+        if input("Do you want to play again?").upper() == "Y":
+            level1.main()
+            level1.highscore = []
+        else:
+            score = Score(score = points, user_id = user.id, leaderboard_id = leaderboard.id)
+            session.add(score)
+            session.commit()
 
 def display_hangman(tries):
     stages = [  # final state: head, torso, both arms, and both legs
@@ -145,9 +153,6 @@ def display_hangman(tries):
     ]
     return stages[tries]
 
-def main():
+def main(user, leaderboard):
     word = level5_words()
-    play_game(word)
-
-if __name__ == "__main__":
-    main()
+    play_game(word, user, leaderboard)

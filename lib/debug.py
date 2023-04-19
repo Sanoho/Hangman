@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from db.models import Base, Word, User
+from db.models import Base, Word, User, Leaderboard, Score
+import ipdb
 # from db.words import level_three_words
 
 if __name__ == '__main__':
@@ -35,3 +36,10 @@ if __name__ == '__main__':
     # deleted_words = session.query(Word).filter(Word.difficulty == 3)
     # session.delete(deleted_words)
     # session.commit()
+
+    # l = Leaderboard()
+    # session.add(l)
+    # session.commit()
+
+
+ipdb.set_trace()
