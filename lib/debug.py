@@ -1,7 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from db.models import (Base, Word)
-import hangman
+from db.models import Base, Word, User
 # from db.words import level_three_words
 
 if __name__ == '__main__':
