@@ -21,6 +21,7 @@ def play_game(word):
     guessed_letters = []
     guessed_words = []
     tries = 6
+    score = 20
     print("Let's play Hangman!")
     print(display_hangman(tries))
     print(word_completion)
@@ -61,8 +62,12 @@ def play_game(word):
         print("\n")
     if guessed:
         print("Congrats, you guessed the word! You win!")
+        total_score = tries * score
+        level1.highscore.append(total_score)
+        print(sum([score for score in level1.highscore]))
     else:
         print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
+        print(sum([score for score in level1.highscore]))
 
 def display_hangman(tries):
     stages = [  # final state: head, torso, both arms, and both legs

@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import level2
 
-
+highscore = []
 def level1_words():
     engine = create_engine('sqlite:///hangman_app.db')
     Base.metadata.create_all(engine)
@@ -22,6 +22,7 @@ def play_game(word):
     guessed_letters = []
     guessed_words = []
     tries = 6
+    score = 20
     print("Let's play Hangman!")
     print(display_hangman(tries))
     print(word_completion)
@@ -62,6 +63,8 @@ def play_game(word):
         print("\n")
     if guessed:
         print("Congrats, you guessed the word! You win!")
+        total_score = tries * score
+        highscore.append(total_score)
     else:
         print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
 

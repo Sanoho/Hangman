@@ -47,6 +47,17 @@ user = User(username = username)
 session.add(user)
 session.commit()
 
+# def find_or_create_user(username):
+#     user = session.query(User).filter_by(username = username)
+#     if user:
+#         return user
+#     else:
+#         user = User(username = username)
+#         session.add(user)
+#         session.commit()
+#         return user
+# user = find_or_create_user(username)
+
 def input_username(username):
     welcome_message = f"Welcome, {username}!\nAre you ready to start?\n(y/n)\n"
     for char in welcome_message:
