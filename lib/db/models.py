@@ -8,7 +8,7 @@ class User(Base):
     __tablename__ = 'users'
     id = Column('id', Integer, primary_key = True)
     username = Column('username', String)
-    scores = relationship('Score', backref = 'user')
+    score = relationship('Score', backref = 'user')
     def __repr__(self):
         return f'Id: {self.id}, ' \
             f'Username {self.username}' 

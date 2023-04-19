@@ -1,7 +1,13 @@
-# from db.score import Score
-# from db.user import User
 import level1
 import os, time, sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from db.models import Base, User
+
+engine = create_engine('sqlite:///hangman_app.db')
+Base.metadata.create_all(engine)
+Session = sessionmaker(bind = engine)
+session = Session()
 
 os.system('clear')
 hangman = ["hangman11.txt", "hangman22.txt"]
@@ -37,12 +43,17 @@ def prompt_username(ask_name):
 prompt_username(ask_name)
 
 username = input()
+user = User(username = username)
+session.add(user)
+session.commit()
+
 def input_username(username):
     welcome_message = f"Welcome, {username}!\nAre you ready to start?\n(y/n)\n"
     for char in welcome_message:
         sys.stdout.write(char)
         sys.stdout.flush()
         time.sleep(0.1)
+    
 input_username(username) 
 
 decision = input()
