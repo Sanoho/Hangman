@@ -3,7 +3,6 @@ from db.models import Word, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import level2
-from level3 import  level3_words
 
 
 def level1_words():

@@ -1,6 +1,6 @@
 # from db.score import Score
 # from db.user import User
-import level1, level2, level3, level4, level5
+import level1
 import os, time, sys
 
 os.system('clear')
