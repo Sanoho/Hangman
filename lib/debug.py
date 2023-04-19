@@ -35,4 +35,3 @@ if __name__ == '__main__':
     # deleted_words = session.query(Word).filter(Word.difficulty == 3)
     # session.delete(deleted_words)
     # session.commit()
-    

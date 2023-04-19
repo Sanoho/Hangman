@@ -65,8 +65,12 @@ def play_game(word):
         print("Congrats, you guessed the word! You win!")
         total_score = tries * score
         highscore.append(total_score)
+        if input("Are you ready for the next level? ").upper() == "Y":
+            level2.main()
     else:
         print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
+        if input("Do you want to play again?").upper() == "Y":
+            main()
 
 def display_hangman(tries):
     stages = [  # final state: head, torso, both arms, and both legs
@@ -145,8 +149,6 @@ def display_hangman(tries):
 def main():
     word = level1_words()
     play_game(word)
-    while input("Are you ready for the next level? ").upper() == "Y":
-        level2.main()
 
 if __name__ == "__main__":
     main()

@@ -1,14 +1,17 @@
-import random
-from db.models import Word, Base
+import random, os
+from db.models import Word, Base, Score, Leaderboard, User
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import level1, level3
 
+engine = create_engine('sqlite:///hangman_app.db')
+Base.metadata.create_all(engine)
+Session = sessionmaker(bind = engine)
+session = Session()
+# leaderboard = session.query(Leaderboard).first()
+# userid = session.query(User).get(User.id)
+
 def level2_words():
-    engine = create_engine('sqlite:///hangman_app.db')
-    Base.metadata.create_all(engine)
-    Session = sessionmaker(bind = engine)
-    session = Session()
     word_list = []
     for word in session.query(Word).where(Word.difficulty == 2):
         word_list.append(word.word)
@@ -64,13 +67,22 @@ def play_game(word):
         print("Congrats, you guessed the word! You win!")
         total_score = tries * score
         level1.highscore.append(total_score)
+        if input("Are you ready for the next level? ").upper() == "Y":
+            level3.main()
     else:
         print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
-        print(sum([score for score in level1.highscore]))
+        points = sum([score for score in level1.highscore])
+        print(points)
+        if input("Do you want to play again?").upper() == "Y":
+            level1.main()
+            level1.highscore = []
+        # score = Score(score = points, user_id = userid, leaderboard_id = leaderboard)
+        # session.add(score)
+        # session.commit()
 
 def display_hangman(tries):
     stages = [  # final state: head, torso, both arms, and both legs
-                """
+                """ßß
                 --------
                 |      |
                 |      O
@@ -145,9 +157,6 @@ def display_hangman(tries):
 def main():
     word = level2_words()
     play_game(word)
-    while input("Are you ready for the next level? ").upper() == "Y":
-        level3.main()
-
 
 if __name__ == "__main__":
     main()

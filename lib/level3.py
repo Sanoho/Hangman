@@ -64,6 +64,8 @@ def play_game(word):
         print("Congrats, you guessed the word! You win!")
         total_score = tries * score
         level1.highscore.append(total_score)
+        if input("Are you ready for the next level? ").upper() == "Y":
+            level4.main()
     else:
         print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
         print(sum([score for score in level1.highscore]))
@@ -145,9 +147,6 @@ def display_hangman(tries):
 def main():
     word = level3_words()
     play_game(word)
-    while input("Are you ready for the next level? ").upper() == "Y":
-        level4.main()
-
 
 if __name__ == "__main__":
     main()

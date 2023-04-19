@@ -43,20 +43,21 @@ def prompt_username(ask_name):
 prompt_username(ask_name)
 
 username = input()
-user = User(username = username)
-session.add(user)
-session.commit()
+# user = User(username = username)
+# session.add(user)
+# session.commit()
 
-# def find_or_create_user(username):
-#     user = session.query(User).filter_by(username = username)
-#     if user:
-#         return user
-#     else:
-#         user = User(username = username)
-#         session.add(user)
-#         session.commit()
-#         return user
-# user = find_or_create_user(username)
+def find_or_create_user(username):
+    user = session.query(User).filter(User.username == username).first()
+    if user:
+        return user
+    else:
+        user = User(username = username)
+        session.add(user)
+        session.commit()
+        return user
+user = find_or_create_user(username)
+
 
 def input_username(username):
     welcome_message = f"Welcome, {username}!\nAre you ready to start?\n(y/n)\n"
@@ -76,6 +77,7 @@ def yes_or_no(decision):
 while decision != "y":
     prompt_username(ask_name)
     username = input()
+    find_or_create_user(username)
     input_username(username)
     decision = input()
     yes_or_no(decision)
