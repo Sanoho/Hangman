@@ -70,7 +70,7 @@ def play_game(word, user, animator):
         print(word_completion)
         print("\n")
     if guessed:
-        print(f"{green}Congrats, you guessed the word!")
+        print(f"{green}Amazing, you got another word!")
         total_score = tries * score
         level1.highscore.append(total_score)
         points = sum([score for score in level1.highscore])     
