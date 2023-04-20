@@ -1,4 +1,4 @@
-import random
+import random, os
 from db.models import Word, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -9,6 +9,7 @@ red = "\033[1;31;40m"
 yellow = "\033[1;33;40m"
 green = "\033[1;32;40m"
 magenta = "\033[1;35;40m"
+loser = ["hangman11.txt", "hangman22.txt"]
 
 highscore = []
 def level1_words():
@@ -22,7 +23,7 @@ def level1_words():
     random_word = random.choice(word_list)
     return random_word.upper()
 
-def play_game(word, user):
+def play_game(word, user, animator):
     word_completion = "_" * len(word)
     guessed = False
     guessed_letters = []
@@ -72,11 +73,14 @@ def play_game(word, user):
         total_score = tries * score
         highscore.append(total_score)
         if input(f"{magenta}\nAre you ready for the next level? ").upper() == "Y":
-            level2.main(user)
+            level2.main(user, animator)
     else:
         print(f"{red}Sorry, you ran out of tries. The word was " + f"{white}{word}" + f"{red}. Maybe next time!")
         if input(f"{magenta}\nDo you want to play again?").upper() == "Y":
             main(user)
+        else:
+            os.system("clear")
+            animator(loser, delay = 2, repeat = 1)
 
 def display_hangman(tries):
     stages = [  # final state: head, torso, both arms, and both legs
@@ -153,6 +157,6 @@ def display_hangman(tries):
     ]
     return stages[tries]
 
-def main(user):
+def main(user, animator):
     word = level1_words()
-    play_game(word, user)
+    play_game(word, user, animator)
