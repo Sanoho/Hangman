@@ -1,4 +1,134 @@
 level_one_words = [
+    'pass',
+    'code',
+    'easy',
+    'hair',
+    'dog',
+    'that',
+    'join',
+    'pets',
+    'time',
+    'cat',
+    'rose',
+    'code',
+    'hot',
+    'coat',
+    'keep',
+    'team',
+    'vent',
+    'dope',
+    'hang',
+    'main',
+    'push',
+    'pull',
+    'app',
+    'save',
+    'fake',
+    'home'
+]
+
+level_two_words = [
+    'react',
+    'tries',
+    'props',
+    'words',
+    'happy',
+    'enjoy',
+    'learn',
+    'super',
+    'chess',
+    'code',
+    'hello',
+    'world',
+    'groups',
+    'install',
+    'child',
+    'climb'
+]
+
+level_three_words = [
+    'coding',
+    'python',
+    'expert',
+    'winner',
+    'lovely',
+    'ignore',
+    'premium',
+    'houses',
+    'blouse',
+    'attack',
+    'potter',
+    'happier',
+    'cordial',
+    'creams',
+    'liquor',
+    'tennis',
+    'turbo',
+    'spool',
+    'keyboard',
+    'laptop'
+]
+    
+level_four_words = [
+    'beginner',
+    'harder',
+    'thought',
+    'cheater',
+    'bridge',
+    'disgust',
+    'imposter',
+    'luckier',
+    'boolean',
+    'uptown',
+    'vaporize',
+    'voodoo',
+    'twelfth',
+    'oxygen',
+    'marquis',
+    'foxglove',
+    'galaxy',
+    'blizzard',
+    'zigzag',
+    'daiquiri'
+]
+
+level_five_words = [
+    'paradigm',
+    'insomnia',
+    'javascript',
+    'intermediate',
+    'interesting',
+    'dungeon',
+    'enneagram',
+    'difficult',
+    'grandmaster',
+    'prodigy',
+    'children',
+    'foreign',
+    'challenge',
+    'differences',
+    'awkward',
+    'abruptly',
+    'absurd',
+    'axiom',
+    'triphthong',
+    'unknown',
+    'iatrogenic',
+    'voyeurism',
+    'jiujitsu',
+    'zealot',
+    'yachtsman',
+    'xyolphone',
+    'err',
+    'pneumonia',
+    'razzmatazz',
+    'sphinx',
+    'fluffiness',
+    'zilch',
+    'zephyr'
+]
+
+impossible = [
     'jazz',
     'buzz',
     'buzzed',
@@ -26,20 +156,3 @@ level_one_words = [
     'waxes',
     'swizz'
 ]
-
-level_two_words = [
-
-]
-
-level_three_words = [
-
-]
-    
-level_four_words = [
-
-]
-
-level_five_words = [
-
-]
-
