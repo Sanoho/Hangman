@@ -4,6 +4,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import level2
 
+white = "\033[1;37;40m"
+red = "\033[1;31;40m"
+yellow = "\033[1;33;40m"
+green = "\033[1;32;40m"
+magenta = "\033[1;35;40m"
+
 highscore = []
 def level1_words():
     engine = create_engine('sqlite:///hangman_app.db')
@@ -23,21 +29,21 @@ def play_game(word, user):
     guessed_words = []
     tries = 6
     score = 20
-    print("Let's play Hangman!")
+    print(f"{magenta}\nLet's play Hangman!")
     print(display_hangman(tries))
     print(word_completion)
     print("\n")
     while not guessed and tries > 0:
-        guess = input("Please guess a letter or word: ").upper()
+        guess = input(f"{magenta}Please guess a letter or word: ").upper()
         if len(guess) == 1 and guess.isalpha():
             if guess in guessed_letters:
-                print("You already guessed the letter", guess)
+                print(f"{yellow}You already guessed the letter", f"{white}{guess}")
             elif guess not in word:
-                print(guess, "is not in the word.")
+                print(f"{white}{guess}", f"{red}is not in the word.")
                 tries -= 1
                 guessed_letters.append(guess)
             else:
-                print("Good job,", guess, "is in the word!")
+                print(f"{green}Good job,", f"{white}{guess}", f"{green}is in the word!")
                 guessed_letters.append(guess)
                 word_as_list = list(word_completion)
                 indices = [i for i, letter in enumerate(word) if letter == guess]
@@ -48,101 +54,102 @@ def play_game(word, user):
                     guessed = True
         elif len(guess) == len(word) and guess.isalpha():
             if guess in guessed_words:
-                print("You already guessed the word", guess)
+                print(f"{yellow}You already guessed the word", f"{white}{guess}")
             elif guess != word:
-                print(guess, "is not the word.")
+                print(f"{white}{guess}", f"{red}is not the word.")
                 tries -= 1
                 guessed_words.append(guess)
             else:
                 guessed = True
                 word_completion = word
         else:
-            print("Not a valid guess.")
+            print(f"{red}Not a valid guess.")
         print(display_hangman(tries))
         print(word_completion)
         print("\n")
     if guessed:
-        print("Congrats, you guessed the word! You win!")
+        print(f"{green}Congrats, you guessed the word!")
         total_score = tries * score
         highscore.append(total_score)
-        if input("Are you ready for the next level? ").upper() == "Y":
+        if input(f"{magenta}\nAre you ready for the next level? ").upper() == "Y":
             level2.main(user)
     else:
-        print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
-        if input("Do you want to play again?").upper() == "Y":
-            main()
+        print(f"{red}Sorry, you ran out of tries. The word was " + f"{white}{word}" + f"{red}. Maybe next time!")
+        if input(f"{magenta}\nDo you want to play again?").upper() == "Y":
+            main(user)
 
 def display_hangman(tries):
     stages = [  # final state: head, torso, both arms, and both legs
-                """
-                --------
-                |      |
-                |      O
-                |     \|/
-                |      |
-                |     d b
-                -
-                """,
+                f"""{red}
+                --------    
+                |      |    
+                |      O    
+                |     \|/   
+                |      |    
+                |     d b   
+                -           """
+     f"""{white}            """,        
                 # head, torso, both arms, and one leg
-                """
-                --------
-                |      |
-                |      O
-                |     \|/
-                |      |
-                |     d 
-                -
-                """,
+                f"""{red}
+                --------    
+                |      |    
+                |      O    
+                |     \|/   
+                |      |    
+                |     d     
+                -           """
+     f"""{white}            """,       
                 # head, torso, and both arms
-                """
-                --------
-                |      |
-                |      O
-                |     \|/
-                |      |
-                |      
-                -
-                """,
+                f"""{yellow}
+                --------    
+                |      |    
+                |      O    
+                |     \|/   
+                |      |    
+                |           
+                -           """
+     f"""{white}            """,        
                 # head, torso, and one arm
-                """
-                --------
-                |      |
-                |      O
-                |     /|
-                |      |
-                |     
-                -
-                """,
+                f"""{yellow}
+                --------    
+                |      |    
+                |      O    
+                |     /|    
+                |      |    
+                |           
+                -           """
+     f"""{white}            """,     
                 # head and torso
-                """
-                --------
-                |      |
-                |      O
-                |      |
-                |      |
-                |     
-                -
-                """,
+                f"""{yellow}
+                --------    
+                |      |    
+                |      O    
+                |      |    
+                |      |    
+                |           
+                -           """
+     f"""{white}            """,    
                 # head
-                """
-                --------
-                |      |
-                |      O
-                |    
-                |      
-                |     
-                -
-                """,
+                f"""{green}
+                --------    
+                |      |    
+                |      O    
+                |           
+                |           
+                |           
+                -           """
+     f"""{white}            """,    
                 # initial empty state
-                """
-                --------
-                |      |
-                |      
-                |    
-                |      
-                |     
-                -
-                """
+                f""" {green}
+                --------    
+                |      |    
+                |           
+                |           
+                |           
+                |           
+                -           
+                            """
+     f"""{white}            """,
     ]
     return stages[tries]
 
