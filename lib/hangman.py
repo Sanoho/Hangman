@@ -18,20 +18,25 @@ cyan = "\033[1;36;40m"
 
 os.system('clear')
 hangman = ["hangman11.txt", "hangman22.txt"]
+jigsaw = ["Jigsaw1.txt", "Jigsaw2.txt"]
+jklol = ["jklol1.txt", "jklol2.txt"]
 
+message1 = f"{red}I want to play a game......."
+print(message1)
 
-# def animator(filenames, delay = 1, repeat = 4):
-#     frames = []
-#     for name in filenames:
-#         with open (name, 'r', encoding = 'utf8') as f:
-#             frames.append(f.readlines())
-#     for i in range(repeat):
-#         for frame in frames:
-#             print(''.join(frame))
-#             time.sleep(delay)
-#             os.system('clear')
-
-# animator(hangman, delay = 1.0, repeat = 3)
+def animator(filenames, delay = 1, repeat = 10):
+    frames = []
+    for name in filenames:
+        with open (name, 'r', encoding = 'utf8') as f:
+            frames.append(f.readlines())
+    for i in range(repeat):
+        for frame in frames:
+            print(''.join(frame))
+            time.sleep(delay)
+            os.system('clear')
+animator(jigsaw, delay = 0.4)
+animator(jklol, delay = 0.4, repeat = 2)
+animator(hangman, delay = 1.0, repeat = 5)
 
 # message = f"""\t\t\t\t\t\t\t\t {green}WELCOME {magenta}TO {green}H{red}A{yellow}N{cyan}G{white}M{magenta}A{green}N{red}!\n
 # \t\t{white}Hangman is a classic word game in which you must guess as many secret words as you can before you run out of lives!\n"""
