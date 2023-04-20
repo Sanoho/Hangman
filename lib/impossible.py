@@ -1,4 +1,4 @@
-import random
+import random, os
 from db.models import Word, Base, Score
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -9,11 +9,13 @@ red = "\033[1;31;40m"
 yellow = "\033[1;33;40m"
 green = "\033[1;32;40m"
 magenta = "\033[1;35;40m"
+loser = ["hangman11.txt", "hangman22.txt"]
 
 engine = create_engine('sqlite:///hangman_app.db')
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind = engine)
 session = Session()
+
 def impossible():
     word_list = []
     for word in session.query(Word).where(Word.difficulty == 99):
@@ -21,7 +23,7 @@ def impossible():
     random_word = random.choice(word_list)
     return random_word.upper()
 
-def play_game(word, user):
+def play_game(word, user, animator):
     word_completion = "_" * len(word)
     guessed = False
     guessed_letters = []
@@ -38,7 +40,7 @@ def play_game(word, user):
             if guess in guessed_letters:
                 print(f"{yellow}What? Is your memory that bad? You already guess that", f"{white}{guess}")
             elif guess not in word:
-                print(f"{white}{guess}", f"{red}is not in the word.")
+                print(f"{red}C'mon... Why would you guess {white}{guess}?!")
                 tries -= 1
                 guessed_letters.append(guess)
             else:
@@ -71,7 +73,7 @@ def play_game(word, user):
         points = tries * score
         print(f"{magenta}Your score was {green}{points}")
         if input(f"{magenta}\nCan you do it again?... I doubt it. ").upper() == "Y":
-            main(user)
+            main(user, animator)
         else:
             score = Score(score = points, user_id = user.id, leaderboard_id = level2.leaderboard.id)
             session.add(score)
@@ -79,7 +81,10 @@ def play_game(word, user):
     else:
         print(f"{red}I thought you were the word-master, the word was " + f"{white}{word}" + f"{red}. Horrible!")
         if input(f"{magenta}\nWant to try again loser??").upper() == "Y":
-            main(user)
+            main(user, animator)
+        else:
+            os.system("clear")
+            animator(loser, delay = 2, repeat = 1)
 
 def display_hangman(tries):
     stages = [  # final state: head, torso, both arms, and both legs
@@ -156,6 +161,6 @@ def display_hangman(tries):
     ]
     return stages[tries]
 
-def main(user):
+def main(user, animator):
     word = impossible()
-    play_game(word, user)
+    play_game(word, user, animator)

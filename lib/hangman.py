@@ -17,12 +17,12 @@ magenta = "\033[1;35;40m"
 cyan = "\033[1;36;40m"
 
 os.system('clear')
-hangman = ["hangman11.txt", "hangman22.txt"]
+opening = ["0.txt", "1.txt", "2.txt", "3.txt", "4.txt", "5.txt", "6.txt", "7.txt"]
 jigsaw = ["Jigsaw1.txt", "Jigsaw2.txt"]
 jklol = ["jklol1.txt", "jklol2.txt"]
 quote = ["I.txt", "IW.txt", "IWA.txt", "IWAN.txt", "IWANT.txt", "IWANTT.txt", "IWANTTO.txt", "IWANTTOP.txt", "IWANTTOPL.txt", "IWANTTOPLA.txt", "IWANTTOPLAY.txt", "IWANTTOPLAYA.txt", "IWANTTOPLAYAG.txt", "IWANTTOPLAYAGA.txt", "IWANTTOPLAYAGAM.txt", "IWANTTOPLAYAGAME.txt", "IWANTTOPLAYAGAME..txt", "IWANTTOPLAYAGAME...txt", "IWANTTOPLAYAGAME....txt", "IWANTTOPLAYAGAME.....txt"]
 
-def animator(filenames, delay = 1, repeat = 10):
+def animator(filenames, delay = 1, repeat = 4):
     frames = []
     for name in filenames:
         with open (name, 'r', encoding = 'utf8') as f:
@@ -32,20 +32,20 @@ def animator(filenames, delay = 1, repeat = 10):
             print(''.join(frame))
             time.sleep(delay)
             os.system('clear')
-animator(quote, delay = 0.3, repeat = 1)
-animator(jigsaw, delay = 0.4)
-animator(jklol, delay = 0.4, repeat = 2)
-animator(hangman, delay = 1.0, repeat = 5)
+# animator(quote, delay = 0.3, repeat = 1)
+# animator(jigsaw, delay = 0.4)
+# animator(jklol, delay = 0.4, repeat = 2)
+# animator(opening, delay = 0.4, repeat = 1)
 
-message = f"""\t\t\t\t\t\t\t\t {green}WELCOME {magenta}TO {green}H{red}A{yellow}N{cyan}G{white}M{magenta}A{green}N{red}!\n
-\t\t{white}Hangman is a classic word game in which you must guess as many secret words as you can before you run out of lives!\n"""
+# message = f"""\t\t\t\t\t\t\t\t {green}WELCOME {magenta}TO {green}H{red}A{yellow}N{cyan}G{white}M{magenta}A{green}N{red}!\n
+# \t\t{white}Hangman is a classic word game in which you must guess as many secret words as you can before you run out of lives!\n"""
 
-def title_typewriter(message):
-    for char in message:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(0.02)
-title_typewriter(message)
+# def title_typewriter(message):
+#     for char in message:
+#         sys.stdout.write(char)
+#         sys.stdout.flush()
+#         time.sleep(0.02)
+# title_typewriter(message)
 
 ask_name = f"\n{magenta}Please enter your username:\n"
 def prompt_username(ask_name):
@@ -93,8 +93,8 @@ while decision != "y":
     yes_or_no(decision)
 
 if username == 'wordsmith':
-    impossible.main(user)
+    impossible.main(user, animator)
 else:
-    level1.main(user)
+    level1.main(user, animator)
 
 

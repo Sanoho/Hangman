@@ -9,6 +9,7 @@ red = "\033[1;31;40m"
 yellow = "\033[1;33;40m"
 green = "\033[1;32;40m"
 magenta = "\033[1;35;40m"
+loser = ["hangman11.txt", "hangman22.txt"]
 
 engine = create_engine('sqlite:///hangman_app.db')
 Base.metadata.create_all(engine)
@@ -23,7 +24,7 @@ def level2_words():
     random_word = random.choice(word_list)
     return random_word.upper()
 
-def play_game(word, user):
+def play_game(word, user, animator):
     word_completion = "_" * len(word)
     guessed = False
     guessed_letters = []
@@ -75,7 +76,7 @@ def play_game(word, user):
         points = sum([score for score in level1.highscore])     
         print(f"{magenta}Your score is {green}{points}")   
         if input(f"{magenta}\nAre you ready for the next level? ").upper() == "Y":
-            level3.main(user, leaderboard)
+            level3.main(user, leaderboard, animator)
     else:
         print(f"{red}Sorry, you ran out of tries. The word was " + f"{white}{word}" + f"{red}. Maybe next time!")
         points = sum([score for score in level1.highscore])
@@ -87,6 +88,8 @@ def play_game(word, user):
             score = Score(score = points, user_id = user.id, leaderboard_id = leaderboard.id)
             session.add(score)
             session.commit()
+            os.system("clear")
+            animator(loser, delay = 2, repeat = 1)
 
 def display_hangman(tries):
     stages = [  # final state: head, torso, both arms, and both legs
@@ -163,6 +166,6 @@ def display_hangman(tries):
     ]
     return stages[tries]
 
-def main(user):
+def main(user, animator):
     word = level2_words()
-    play_game(word, user)
+    play_game(word, user, animator)
