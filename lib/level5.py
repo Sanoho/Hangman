@@ -10,6 +10,7 @@ yellow = "\033[1;33;40m"
 green = "\033[1;32;40m"
 magenta = "\033[1;35;40m"
 loser = ["hangman11.txt", "hangman22.txt"]
+congrats = ["congrats1.txt", "congrats2.txt"]
 
 engine = create_engine('sqlite:///hangman_app.db')
 Base.metadata.create_all(engine)
@@ -70,16 +71,16 @@ def play_game(word, user, leaderboard, animator):
     if guessed:
         total_score = tries * score
         level1.highscore.append(total_score)
-        print(sum([score for score in level1.highscore]))
         points = sum([score for score in level1.highscore])     
-        print(f"Congrats, you won the game with the score of {points}!!")
-        if input("CONGRATS YOU WON THE GAME!! Play Again? (Y/N) ").upper() == "Y":
+        if input(f"{green}CONGRATS YOU WON THE GAME WITH THE SCORE OF {white}{points}{green}!!\n{magenta}Play Again? ({green}Y{magenta}/{red}N{magenta}) ").upper() == "Y":
             level1.main()
+        else:
+            animator(congrats, delay = 1, repeat = 6)
     else:
-        print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
+        print(f"{red}Sorry, you ran out of tries. The word was " + f"{white}{word}" + f"{red}. Maybe next time!")
         points = sum([score for score in level1.highscore])
         print(points)
-        if input("Do you want to play again?").upper() == "Y":
+        if input(f"{magenta}\nDo you want to play again?").upper() == "Y":
             level1.main()
             level1.highscore = []
         else:
