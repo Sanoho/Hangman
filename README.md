@@ -7,7 +7,6 @@
 - Run pipenv shell
 - Cd into the lib folder
 - Run python hangman.py and start playing
-- To check the leaderboard, run python debug.py, then type leaderboard.scores for all scores or [score for score in scores] for ordered scores in the ipdb.
 
 ## Goals
 
