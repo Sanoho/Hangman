@@ -89,7 +89,7 @@ if decision == "1":
         decision = input(f"{white}")
 else:
     scores = session.query(Score).order_by(Score.score.desc()).limit(3)
-    leaderboard_message = f"\n{white}Here are the top 3 high scores: {green}{[score for score in scores]}\n"
+    leaderboard_message = f"\n{white}Here are the top 3 high scores:\n {green}{[score for score in scores]}\n"
     for char in leaderboard_message:
         sys.stdout.write(char)
         sys.stdout.flush()

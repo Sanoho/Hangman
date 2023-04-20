@@ -38,7 +38,7 @@ def play_game(word, user, animator):
         guess = input(f"{magenta}Make your guess boy: ").upper()
         if len(guess) == 1 and guess.isalpha():
             if guess in guessed_letters:
-                print(f"{yellow}What? Is your memory that bad? You already guess that", f"{white}{guess}")
+                print(f"{yellow}What? Is your memory that bad? You already guessed", f"{white}{guess}.")
             elif guess not in word:
                 print(f"{red}C'mon... Why would you guess {white}{guess}?!")
                 tries -= 1
@@ -55,7 +55,7 @@ def play_game(word, user, animator):
                     guessed = True
         elif len(guess) == len(word) and guess.isalpha():
             if guess in guessed_words:
-                print(f"{yellow}C'mon old man, you already guessed that word", f"{white}{guess}")
+                print(f"{yellow}C'mon old man, you already guessed that word", f"{white}{guess}.")
             elif guess != word:
                 print("HAHAHA",f"{white}{guess}", f"{red}is not the word.")
                 tries -= 1
