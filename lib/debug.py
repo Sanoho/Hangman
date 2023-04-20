@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from db.models import Base, Word, User, Leaderboard, Score
+from db.models import Base, Word, Leaderboard, Score
 import ipdb
-# from db.words import level_one_words
+# from db.words import impossible
 
 if __name__ == '__main__':
     engine = create_engine('sqlite:///hangman_app.db')
@@ -32,7 +32,11 @@ if __name__ == '__main__':
     #     word = Word(word = word, difficulty = 5)
     #     session.add(word)
     #     session.commit()
-        
+    # for word in impossible:
+    #     word = Word(word = word, difficulty = 99)
+    #     session.add(word)
+    #     session.commit()    
+
     # deleted_words = session.query(Word).filter(Word.difficulty == 3)
     # session.delete(deleted_words)
     # session.commit()
@@ -41,5 +45,12 @@ if __name__ == '__main__':
     # session.add(l)
     # session.commit()
 
+    # ------ below is for leaderboard -----
+    # pulls up the scores --- uncomment below
+    # leaderboard = session.query(Leaderboard).first()
 
-# ipdb.set_trace()
+    # orders the leaderboard by highest  --- don't uncomment this
+    # scores = session.query(Score).order_by(Score.score.desc()).limit(3)
+    # ------ above is for the leaderboard ------- uncomment above
+
+ipdb.set_trace()
