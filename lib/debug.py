@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from db.models import Base, Word, User, Leaderboard, Score
 import ipdb
-# from db.words import level_three_words
+# from db.words import level_one_words
 
 if __name__ == '__main__':
     engine = create_engine('sqlite:///hangman_app.db')
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     # pas = Word(word = 'pass', difficulty = 1)
 
     # for word in level_one_words:
-    #     word = Word(word = word, difficulty = 1)
+    #     word = Word(word = word, difficulty = 99)
     #     session.add(word)
     #     session.commit()
     # for word in level_two_words:
@@ -42,4 +42,4 @@ if __name__ == '__main__':
     # session.commit()
 
 
-ipdb.set_trace()
+# ipdb.set_trace()

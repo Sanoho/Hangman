@@ -1,4 +1,4 @@
-import level1
+import level1, impossible
 import os, time, sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -20,28 +20,28 @@ os.system('clear')
 hangman = ["hangman11.txt", "hangman22.txt"]
 
 
-def animator(filenames, delay = 1, repeat = 4):
-    frames = []
-    for name in filenames:
-        with open (name, 'r', encoding = 'utf8') as f:
-            frames.append(f.readlines())
-    for i in range(repeat):
-        for frame in frames:
-            print(''.join(frame))
-            time.sleep(delay)
-            os.system('clear')
+# def animator(filenames, delay = 1, repeat = 4):
+#     frames = []
+#     for name in filenames:
+#         with open (name, 'r', encoding = 'utf8') as f:
+#             frames.append(f.readlines())
+#     for i in range(repeat):
+#         for frame in frames:
+#             print(''.join(frame))
+#             time.sleep(delay)
+#             os.system('clear')
 
-animator(hangman, delay = 1.0, repeat = 3)
+# animator(hangman, delay = 1.0, repeat = 3)
 
-message = f"""\t\t\t\t\t\t\t\t {green}WELCOME {magenta}TO {green}H{red}A{yellow}N{cyan}G{white}M{magenta}A{green}N{red}!\n
-\t\t{white}Hangman is a classic word game in which you must guess as many secret words as you can before you run out of lives!\n"""
+# message = f"""\t\t\t\t\t\t\t\t {green}WELCOME {magenta}TO {green}H{red}A{yellow}N{cyan}G{white}M{magenta}A{green}N{red}!\n
+# \t\t{white}Hangman is a classic word game in which you must guess as many secret words as you can before you run out of lives!\n"""
 
-def title_typewriter(message):
-    for char in message:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(0.02)
-title_typewriter(message)
+# def title_typewriter(message):
+#     for char in message:
+#         sys.stdout.write(char)
+#         sys.stdout.flush()
+#         time.sleep(0.02)
+# title_typewriter(message)
 
 ask_name = f"\n{magenta}Please enter your username:\n"
 def prompt_username(ask_name):
@@ -88,6 +88,9 @@ while decision != "y":
     decision = input()
     yes_or_no(decision)
 
-level1.main(user)
+if username == 'wordsmith':
+    impossible.main(user)
+else:
+    level1.main(user)
 
 
