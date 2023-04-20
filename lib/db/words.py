@@ -165,7 +165,6 @@ impossible = [
     'mug',
     'bog',
     'bot',
-    'hot',
     'not',
     'rot',
     'lot',
@@ -195,5 +194,4 @@ impossible = [
     'sit',
     'lit',
     'hit'
-
 ]
