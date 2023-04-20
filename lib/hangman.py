@@ -20,14 +20,7 @@ os.system('clear')
 hangman = ["hangman11.txt", "hangman22.txt"]
 jigsaw = ["Jigsaw1.txt", "Jigsaw2.txt"]
 jklol = ["jklol1.txt", "jklol2.txt"]
-
-message1 = "I want to play a game.......                                   "
-def title_typewriter(message):
-    for char in message:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(0.02)
-title_typewriter(message1)
+quote = ["I.txt", "IW.txt", "IWA.txt", "IWAN.txt", "IWANT.txt", "IWANTT.txt", "IWANTTO.txt", "IWANTTOP.txt", "IWANTTOPL.txt", "IWANTTOPLA.txt", "IWANTTOPLAY.txt", "IWANTTOPLAYA.txt", "IWANTTOPLAYAG.txt", "IWANTTOPLAYAGA.txt", "IWANTTOPLAYAGAM.txt", "IWANTTOPLAYAGAME.txt", "IWANTTOPLAYAGAME..txt", "IWANTTOPLAYAGAME...txt", "IWANTTOPLAYAGAME....txt", "IWANTTOPLAYAGAME.....txt"]
 
 def animator(filenames, delay = 1, repeat = 10):
     frames = []
@@ -39,6 +32,7 @@ def animator(filenames, delay = 1, repeat = 10):
             print(''.join(frame))
             time.sleep(delay)
             os.system('clear')
+animator(quote, delay = 0.3, repeat = 1)
 animator(jigsaw, delay = 0.4)
 animator(jklol, delay = 0.4, repeat = 2)
 animator(hangman, delay = 1.0, repeat = 5)
@@ -46,11 +40,11 @@ animator(hangman, delay = 1.0, repeat = 5)
 message = f"""\t\t\t\t\t\t\t\t {green}WELCOME {magenta}TO {green}H{red}A{yellow}N{cyan}G{white}M{magenta}A{green}N{red}!\n
 \t\t{white}Hangman is a classic word game in which you must guess as many secret words as you can before you run out of lives!\n"""
 
-# def title_typewriter(message):
-#     for char in message:
-#         sys.stdout.write(char)
-#         sys.stdout.flush()
-#         time.sleep(0.02)
+def title_typewriter(message):
+    for char in message:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(0.02)
 title_typewriter(message)
 
 ask_name = f"\n{magenta}Please enter your username:\n"
