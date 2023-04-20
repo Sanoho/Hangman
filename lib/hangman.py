@@ -10,12 +10,12 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind = engine)
 session = Session()
 
-white = "\033[1;37;40m"
-red = "\033[1;31;40m"
-yellow = "\033[1;33;40m"
-green = "\033[1;32;40m"
-magenta = "\033[1;35;40m"
-cyan = "\033[1;36;40m"
+white = "\033[1;37;49m"
+red = "\033[1;31;49m"
+yellow = "\033[1;33;49m"
+green = "\033[1;32;49m"
+magenta = "\033[1;35;49m"
+cyan = "\033[1;36;49m"
 
 os.system('clear')
 opening = ["0.txt", "1.txt", "2.txt", "3.txt", "4.txt", "5.txt", "6.txt", "7.txt"]

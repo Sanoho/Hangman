@@ -4,11 +4,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import level1, level5
 
-white = "\033[1;37;40m"
-red = "\033[1;31;40m"
-yellow = "\033[1;33;40m"
-green = "\033[1;32;40m"
-magenta = "\033[1;35;40m"
+white = "\033[1;37;49m"
+red = "\033[1;31;49m"
+yellow = "\033[1;33;49m"
+green = "\033[1;32;49m"
+magenta = "\033[1;35;49m"
 loser = ["hangman11.txt", "hangman22.txt"]
 
 engine = create_engine('sqlite:///hangman_app.db')
