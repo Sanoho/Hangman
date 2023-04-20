@@ -2,7 +2,8 @@ import level1, impossible
 import os, time, sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from db.models import Base, User
+from db.models import Base, User, Score
+
 
 engine = create_engine('sqlite:///hangman_app.db')
 Base.metadata.create_all(engine)
@@ -70,27 +71,31 @@ user = find_or_create_user(username)
 
 
 def input_username(username):
-    welcome_message = f"\n{magenta}Welcome," + f"{white} {username}" + f"{magenta}!" + f"{magenta}\n\nAre you ready to start?" + f" {magenta}(" + f"{green}y" + f"{magenta}/" + f"{red}n" + f"{magenta})\n"
+    welcome_message = f"\n{magenta}Welcome," + f"{white} {username}" + f"{magenta}!" + f"{magenta}\n\nPress {cyan}1 {magenta}to Play {green}H{red}A{yellow}N{cyan}G{white}M{magenta}A{green}N{red} {magenta}or Press {cyan}2 {magenta}to see the Current Leaderboard:\n"
     for char in welcome_message:
         sys.stdout.write(char)
         sys.stdout.flush()
-        time.sleep(0.05)
+        time.sleep(0.03)
     
-input_username(username) 
+input_username(username)
 
 decision = input(f"{white}")
-
-def yes_or_no(decision):
-    if decision == "y":
-        print(f"{green}Let's start the game!")
-
-while decision != "y":
-    prompt_username(ask_name)
-    username = input()
-    find_or_create_user(username)
+if decision == "1":
+    while decision != "1":
+        prompt_username(ask_name)
+        username = input()
+        find_or_create_user(username)
+        input_username(username)
+        decision = input(f"{white}")
+else:
+    scores = session.query(Score).order_by(Score.score.desc()).limit(3)
+    leaderboard_message = f"\n{white}Here are the top 3 high scores: {green}{[score for score in scores]}\n"
+    for char in leaderboard_message:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(0.03)
     input_username(username)
-    decision = input()
-    yes_or_no(decision)
+    decision = input(f"{white}")
 
 if username == 'wordsmith':
     impossible.main(user, animator)
