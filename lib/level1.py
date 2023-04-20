@@ -72,14 +72,18 @@ def play_game(word, user, animator):
         print(f"{green}Congrats, you guessed the word!")
         total_score = tries * score
         highscore.append(total_score)
-        if input(f"{magenta}\nAre you ready for the next level? ").upper() == "Y":
+        if input(f"{magenta}\nAre you ready for level 2? ").upper() == "Y":
+            os.system('clear')
             level2.main(user, animator)
+        else:
+            animator(loser, delay = 2, repeat = 1)
     else:
         print(f"{red}Sorry, you ran out of tries. The word was " + f"{white}{word}" + f"{red}. Maybe next time!")
         if input(f"{magenta}\nDo you want to play again?").upper() == "Y":
-            main(user)
+            os.system('clear')
+            main(user, animator)
         else:
-            os.system("clear")
+            os.system('clear')
             animator(loser, delay = 2, repeat = 1)
 
 def display_hangman(tries):

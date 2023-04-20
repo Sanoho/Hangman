@@ -72,8 +72,9 @@ def play_game(word, user, leaderboard, animator):
         total_score = tries * score
         level1.highscore.append(total_score)
         points = sum([score for score in level1.highscore])     
-        if input(f"{green}CONGRATS YOU WON THE GAME WITH THE SCORE OF {white}{points}{green}!!\n{magenta}Play Again? ({green}Y{magenta}/{red}N{magenta}) ").upper() == "Y":
-            level1.main()
+        if input(f"{green}CONGRATS YOU WON THE GAME WITH THE SCORE OF {white}{points}{green}!!\n{magenta}Play Again for a higher score? ({green}Y{magenta}/{red}N{magenta}) ").upper() == "Y":
+            os.system('clear')
+            level1.main(user, animator)
         else:
             animator(congrats, delay = 1, repeat = 6)
     else:
@@ -81,7 +82,8 @@ def play_game(word, user, leaderboard, animator):
         points = sum([score for score in level1.highscore])
         print(points)
         if input(f"{magenta}\nDo you want to play again?").upper() == "Y":
-            level1.main()
+            os.system('clear')
+            level1.main(user, animator)
             level1.highscore = []
         else:
             score = Score(score = points, user_id = user.id, leaderboard_id = leaderboard.id)

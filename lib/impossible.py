@@ -10,6 +10,8 @@ yellow = "\033[1;33;40m"
 green = "\033[1;32;40m"
 magenta = "\033[1;35;40m"
 loser = ["hangman11.txt", "hangman22.txt"]
+congrats = ["congrats1.txt", "congrats2.txt"]
+troll = ["hangman22.txt"]
 
 engine = create_engine('sqlite:///hangman_app.db')
 Base.metadata.create_all(engine)
@@ -73,14 +75,18 @@ def play_game(word, user, animator):
         points = tries * score
         print(f"{magenta}Your score was {green}{points}")
         if input(f"{magenta}\nCan you do it again?... I doubt it. ").upper() == "Y":
+            os.system('clear')
             main(user, animator)
         else:
             score = Score(score = points, user_id = user.id, leaderboard_id = level2.leaderboard.id)
             session.add(score)
             session.commit()
+            animator(congrats, delay = 1, repeat = 3)
+            animator(troll, delay = 1, repeat = 2)
     else:
         print(f"{red}I thought you were the word-master, the word was " + f"{white}{word}" + f"{red}. Horrible!")
         if input(f"{magenta}\nWant to try again loser??").upper() == "Y":
+            os.system('clear')
             main(user, animator)
         else:
             os.system("clear")

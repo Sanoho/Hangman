@@ -75,20 +75,24 @@ def play_game(word, user, animator):
         level1.highscore.append(total_score)
         points = sum([score for score in level1.highscore])     
         print(f"{magenta}Your score is {green}{points}")   
-        if input(f"{magenta}\nAre you ready for the next level? ").upper() == "Y":
+        if input(f"{magenta}\nAre you ready for level 3? ").upper() == "Y":
+            os.system('clear')
             level3.main(user, leaderboard, animator)
+        else:
+            animator(loser, delay = 2, repeat = 1)
     else:
         print(f"{red}Sorry, you ran out of tries. The word was " + f"{white}{word}" + f"{red}. Maybe next time!")
         points = sum([score for score in level1.highscore])
         print(f"{magenta}Your score was {green}{points}")
         if input(f"{magenta}\nDo you want to play again?").upper() == "Y":
-            level1.main()
+            os.system('clear')
+            level1.main(user, animator)
             level1.highscore = []
         else:
             score = Score(score = points, user_id = user.id, leaderboard_id = leaderboard.id)
             session.add(score)
             session.commit()
-            os.system("clear")
+            os.system('clear')
             animator(loser, delay = 2, repeat = 1)
 
 def display_hangman(tries):
