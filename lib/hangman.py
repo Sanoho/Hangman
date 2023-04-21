@@ -33,20 +33,20 @@ def animator(filenames, delay = 1, repeat = 4):
             print(''.join(frame))
             time.sleep(delay)
             os.system('clear')
-# animator(quote, delay = 0.3, repeat = 1)
-# animator(jigsaw, delay = 0.4)
-# animator(jklol, delay = 0.4, repeat = 2)
-# animator(opening, delay = 0.4, repeat = 1)
+animator(quote, delay = 0.3, repeat = 1)
+animator(jigsaw, delay = 0.4)
+animator(jklol, delay = 0.4, repeat = 2)
+animator(opening, delay = 0.4, repeat = 1)
 
-# message = f"""\t\t\t\t\t\t\t\t {green}WELCOME {magenta}TO {green}H{red}A{yellow}N{cyan}G{white}M{magenta}A{green}N{red}!\n
-# \t\t{white}Hangman is a classic word game in which you must guess as many secret words as you can before you run out of lives!\n"""
+message = f"""\t\t\t\t\t\t\t\t {green}WELCOME {magenta}TO {green}H{red}A{yellow}N{cyan}G{white}M{magenta}A{green}N{red}!\n
+\t\t{white}Hangman is a classic word game in which you must guess as many secret words as you can before you run out of lives!\n"""
 
-# def title_typewriter(message):
-#     for char in message:
-#         sys.stdout.write(char)
-#         sys.stdout.flush()
-#         time.sleep(0.02)
-# title_typewriter(message)
+def title_typewriter(message):
+    for char in message:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(0.02)
+title_typewriter(message)
 
 ask_name = f"\n{magenta}Please enter your username:\n"
 def prompt_username(ask_name):
