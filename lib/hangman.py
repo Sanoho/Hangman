@@ -79,27 +79,28 @@ def input_username(username):
     
 input_username(username)
 
-decision = input(f"{white}")
-if decision == "1":
-    while decision != "1":
-        prompt_username(ask_name)
-        username = input()
-        find_or_create_user(username)
-        input_username(username)
-        decision = input(f"{white}")
-else:
-    scores = session.query(Score).order_by(Score.score.desc()).limit(3)
-    leaderboard_message = f"\n{white}Here are the top 3 high scores:\n {green}{[score for score in scores]}\n"
-    for char in leaderboard_message:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(0.03)
-    input_username(username)
+def play():
     decision = input(f"{white}")
+    if decision == "1":
+        if username == 'wordsmith':
+            impossible.main(user, animator)
+        else:
+            level1.main(user, animator)
+    elif decision == "2":
+        scores = session.query(Score).order_by(Score.score.desc()).limit(3)
+        leaderboard_message = f"\n{white}Here are the top 3 high scores:\n {green}{[score for score in scores]}\n"
+        for char in leaderboard_message:
+            sys.stdout.write(char)
+            sys.stdout.flush()
+            time.sleep(0.03)
+        input_username(username)
+        play()
+    else:
+        print(f'{magenta}That is not a valid input.')
+        print(f'{magenta}Press {cyan}1 {magenta}to {white}Play, {magenta}Press {cyan}2 {magenta}to {white}see Current Leaderboard.')
+        play()
 
-if username == 'wordsmith':
-    impossible.main(user, animator)
-else:
-    level1.main(user, animator)
+play()
+
 
 
