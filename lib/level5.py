@@ -76,6 +76,9 @@ def play_game(word, user, leaderboard, animator):
             os.system('clear')
             level1.main(user, animator)
         else:
+            score = Score(score = points, user_id = user.id, leaderboard_id = leaderboard.id)
+            session.add(score)
+            session.commit()
             animator(congrats, delay = 1, repeat = 6)
     else:
         print(f"{red}Sorry, you ran out of tries. The word was " + f"{white}{word}" + f"{red}. Maybe next time!")
