@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from db.models import Base, Word, Leaderboard, Score
+from db.models import Base, Word, Leaderboard, Score, User
 import ipdb
 # from db.words import impossible
 
@@ -53,4 +53,4 @@ if __name__ == '__main__':
     # scores = session.query(Score).order_by(Score.score.desc()).limit(3)
     # ------ above is for the leaderboard ------- uncomment above
 
-ipdb.set_trace()
+# ipdb.set_trace()
