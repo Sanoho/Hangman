@@ -42,3 +42,5 @@ We built this as a project but we want everyone to be able to enjoy the game. We
 - Instructor - DJ
 - Google
 - Youtube
+  - user - Kite, @KiteHQ
+  - user - Learn Learn Scratch Tutorials, @learnlearnscratch
